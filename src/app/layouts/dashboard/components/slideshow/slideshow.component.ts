@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { Result } from 'src/app/core/interfaces/trending-response.interface';
 import Swiper from 'swiper';
 
@@ -7,7 +7,7 @@ import Swiper from 'swiper';
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.css']
 })
-export class SlideshowComponent implements OnInit {
+export class SlideshowComponent implements OnInit, AfterViewInit {
 
   @Input() dayTrending:Result[] = [];
 

@@ -1,0 +1,25 @@
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div *ngFor="let actor of cast"
+            class="swiper-slide text-center">
+
+            <img [src]="actor.profile_path | card" alt=""
+                 class="img-thumbnail">
+                 
+            {{ actor.name }}
+            <br>
+            as {{ actor.character }}
+      </div>
+
+
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  
+    <!-- If we need navigation buttons -->
+    <div (click)="onSlidePrev()" class="swiper-button-prev"></div>
+    <div (click)="onSlideNext()" class="swiper-button-next"></div>
+  
+  </div> 

@@ -12,6 +12,13 @@ import { HomeComponent } from './pages/shared/home/home.component';
 import { SlideImagePipe } from '../../shared/pipes/slide-image.pipe';
 import { CardsComponent } from './components/cards/cards.component';
 import { CardPipe } from '../../shared/pipes/card.pipe';
+import { DetailMovie } from './pages/movies/detail/detail.movie';
+import { ListMovie } from './pages/movies/list/list.movie';
+import { DetailTvShow } from './pages/tv-shows/detail/detail.tv-show';
+import { ListTvShow } from './pages/tv-shows/list/list.tv-show';
+import { RoutePipe } from '../../shared/pipes/route.pipe';
+import { CastSlideComponent } from './components/cast-slide/cast-slide.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 
 @NgModule({
@@ -22,7 +29,15 @@ import { CardPipe } from '../../shared/pipes/card.pipe';
     HomeComponent,
     SlideImagePipe,
     CardPipe,
+    RoutePipe,
     CardsComponent,
+    DetailMovie,
+    ListMovie,
+    DetailTvShow,
+    ListTvShow,
+    CastSlideComponent,
+    DetailComponent,
+
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,47 @@
+<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="media">
+    <div class="col-md-6">
+        <img [src]="media.poster_path | card" 
+             [alt]="media.name"
+             class="img-thumbnail">
+    </div>
+
+    <div class="col-md-6">
+        <h3> {{ media.name || media.title }} </h3>
+
+        <div class="row">
+            <div class="col">
+                <star-rating [value]="media.vote_average / 2"
+                                  checkedcolor="yellow"
+                                  uncheckedcolor="gray"
+                                  [totalstars]="5"
+                                  size="25px"
+                                  [readonly]=false></star-rating>
+            </div>
+            <div class="col text-start">
+                {{ media.vote_average | number: '1.1-2' }}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                {{ media.overview }}
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col">
+                <button class="btn btn-info"
+                        (click)="onBack()">
+                    Regresar
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row mt-5" *ngIf="cast.length > 0">
+    <div class="col">
+        <app-cast-slide [cast]="cast"></app-cast-slide>
+    </div>
+</div>

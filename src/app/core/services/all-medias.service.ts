@@ -4,8 +4,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
+import { Cast, Credits } from '../interfaces/credits.interface';
 import { Genre, Genres } from '../interfaces/genre.interface';
-import { Result, TimeWindow, TrendingResponse } from '../interfaces/trending-response.interface';
+import { Result, TimeWindow, TrendingResponse, MediaType } from '../interfaces/trending-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,29 @@ export class AllMediasService {
       .pipe( 
         map( results => results.results )
       );
+  }
+
+  getCastByMediaId( id: string, media: MediaType ): Observable<Cast[]>{
+
+    const url = `${this.baseUrl}/${media}/${id}/credits`;
+
+    return this.http.get<Credits>( url, { params: this.params })
+        .pipe(
+          map( credits => credits.cast ),
+          catchError( err => of([]))
+        );
+
+  }
+
+  getMediaById( id: string, mediaType: MediaType ): Observable<Result | null>{
+
+    const url = `${this.baseUrl}/${mediaType}/${id}`;
+
+    return this.http.get<Result>(url, {params: this.params })
+        .pipe( 
+          catchError( err => of(null))
+         );
+
   }
   
 }
