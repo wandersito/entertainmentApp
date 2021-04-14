@@ -100,5 +100,25 @@ export class AllMediasService {
         })
       );
   }
+
+  getMediaByGenre(genre: string, mediaType:MediaType):Observable<Result[]>{
+
+    if( this._loading ){ 
+      return of([]);
+    }
+
+    const url = `${this.baseUrl}/discover/${ mediaType }`;
+    const params = { with_genres: genre,...this.params}
+    this._loading = true;
+
+    return this.http.get<TrendingResponse>(url, {params: params })
+      .pipe( 
+        map( results => results.results ),
+        tap( () => {
+          this.page += 1;
+          this._loading = false;
+        })
+      );
+  }
   
 }
