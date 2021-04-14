@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { RatingModule } from 'ng-starrating';
+
+
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -23,7 +26,8 @@ import { CardPipe } from '../../shared/pipes/card.pipe';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    RatingModule,
+    DashboardRoutingModule,
   ]
 })
 export class DashboardModule { }
