@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3 col-sm-4 mb-5 animate__animated animate__fadeIn" *ngFor="let mediaItem of weekTrending">
+    <div class="col-md-3 col-sm-4 mb-5 animate__animated animate__fadeIn" *ngFor="let mediaItem of mediaItems">
         <img [src]="mediaItem.poster_path | card"
              class="img-fluid"
              [routerLink]="[mediaItem.media_type | route, mediaItem.id]">    

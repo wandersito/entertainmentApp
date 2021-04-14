@@ -81,5 +81,24 @@ export class AllMediasService {
          );
 
   }
+
+  getAllByMedia( mediaType: MediaType ):Observable<Result[]>{
+
+    if( this._loading ){ 
+      return of([]);
+    }
+
+    const url = `${this.baseUrl}/${ mediaType }/popular`;
+    this._loading = true;
+
+    return this.http.get<TrendingResponse>(url, {params: this.params })
+      .pipe( 
+        map( results => results.results ),
+        tap( () => {
+          this.page += 1;
+          this._loading = false;
+        })
+      );
+  }
   
 }

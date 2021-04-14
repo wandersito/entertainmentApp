@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AllMediasService } from '../../../../../core/services/all-medias.service';
 import { Result, TimeWindow } from '../../../../../core/interfaces/trending-response.interface';
 
@@ -7,7 +7,7 @@ import { Result, TimeWindow } from '../../../../../core/interfaces/trending-resp
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   dayTrending:Result[] = [];
 
@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit {
       this.allMediasService.getTrending( TimeWindow.Day )
         .subscribe( mediaItems => {
           this.dayTrending = mediaItems;
+          console.log( mediaItems)
         });
   }
 

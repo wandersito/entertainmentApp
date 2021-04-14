@@ -8,7 +8,7 @@ import { Result } from 'src/app/core/interfaces/trending-response.interface';
 })
 export class CardsComponent implements OnInit {
 
-  @Input() weekTrending:Result[] = [];
+  @Input() mediaItems:Result[] = [];
 
   constructor() { }
 

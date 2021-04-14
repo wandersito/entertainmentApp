@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MediaType } from 'src/app/core/interfaces/trending-response.interface';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailTvShow implements OnInit {
 
-  constructor() { }
+  id!: string;
+  mediaType: MediaType = MediaType.Tv;
+
+  constructor( private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    const { id } = this.activatedRoute.snapshot.params;
+    this.id = id;
+
   }
 
 }
