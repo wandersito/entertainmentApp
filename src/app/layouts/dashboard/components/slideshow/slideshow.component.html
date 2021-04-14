@@ -1,0 +1,30 @@
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div *ngFor="let mediaItem of dayTrending"
+            [routerLink]="['/dashboard/movie', mediaItem.id]"
+            class="swiper-slide"
+            [ngStyle]="{
+              'background-size': 'cover',
+              'background-image': 'url('+(mediaItem.backdrop_path | slideImage)+')'
+            }">
+
+
+        <div class="movie-description">
+          <h3 class="text-white"> {{ mediaItem.title || mediaItem.name }} </h3>
+          <p class="text-white">
+            {{ mediaItem.overview | slice: 0:130 }}
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  
+    <!-- If we need navigation buttons -->
+    <div (click)="onSlidePrev()" class="swiper-button-prev"></div>
+    <div (click)="onSlideNext()" class="swiper-button-next"></div>
+  
+</div> 

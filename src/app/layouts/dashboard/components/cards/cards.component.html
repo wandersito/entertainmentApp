@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-3 col-sm-4 mb-5 animate__animated animate__fadeIn" *ngFor="let mediaItem of weekTrending">
+        <img [src]="mediaItem.poster_path | card"
+             class="img-fluid"
+             [routerLink]="['/dashboard/movie', movie.id]">    
+
+        <div class="mt-2">
+            <h5 class="title"> {{ mediaItem.title || mediaItem.name }} </h5>
+            <div class="row">
+                <div class="col-11 col-lg-10">
+                    <star-rating [value]="mediaItem.vote_average / 2"
+                                  checkedcolor="yellow"
+                                  uncheckedcolor="gray"
+                                  [totalstars]="5"
+                                  size="25px"
+                                  readonly=false></star-rating>
+                </div>
+                <div class="col-1 col-lg-2">
+                    {{ mediaItem.vote_average / 2 | number: '1.1-1' }}
+                </div>
+            </div>
+        </div>
+    </div>

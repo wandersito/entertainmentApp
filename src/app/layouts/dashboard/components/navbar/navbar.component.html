@@ -1,0 +1,32 @@
+<div class="row mt-4">
+    <div class="col-8">
+        <ul>
+            <img src="assets/netflix.svg" routerLink="./home">
+            <a *ngFor="let item of menu"
+                [routerLink]="item.url">
+                {{ item.label }}
+            </a>
+
+        </ul>
+
+        <ul> 
+            <a *ngFor="let item of moviesGenres"
+                [routerLink]="['/dashboard/movies/genres', item.id, item.name]">
+                {{ item.name }}
+            </a>
+        </ul>
+        <ul> 
+            <a *ngFor="let item of tvShowsGenres"
+                [routerLink]="['/dashboard/tv-shows/genres',item.id, item.name]">
+                {{ item.name }}
+            </a>
+        </ul>
+
+    </div>
+    <div class="col-4">
+        <!-- <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> -->
+    </div>
+</div>
