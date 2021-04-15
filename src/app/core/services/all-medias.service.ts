@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { Cast, Credits } from '../interfaces/credits.interface';
 import { Genre, Genres } from '../interfaces/genre.interface';
 import { Result, TimeWindow, TrendingResponse, MediaType } from '../interfaces/trending-response.interface';
+import { Provider, ProvidersResponse } from '../interfaces/providers.interface';
+import { KeywordsReponse, Keyword } from '../interfaces/keywords.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,7 @@ export class AllMediasService {
   private page:number = 1;
   private language: string = 'en-US'
   private _loading: boolean = false;
+  private region: string = 'US';
 
 
   constructor( private http: HttpClient ) { }
@@ -119,6 +122,51 @@ export class AllMediasService {
           this._loading = false;
         })
       );
+  }
+
+  getProvidersByMedia(id: string, mediaType:MediaType): Observable<Provider>{
+
+    if( this._loading ){ 
+      return of();
+    }
+
+    const url = `${this.baseUrl}/${mediaType}/${id}/watch/providers`;
+    this._loading = true;
+
+    return this.http.get<ProvidersResponse>(url, {params: this.params })
+      .pipe( 
+        map( response => {
+          let provider: Provider;
+          const providerKeyValue = Object.entries(response.results).find( provider => provider[0] === this.region )!;
+          provider = providerKeyValue[1];
+          console.log( provider )
+          console.log( Object.entries(response.results).find( provider => provider[0] === this.region ))
+          return provider;
+        }),
+        tap( () => {
+          this._loading = false;
+        })
+      );
+
+  }
+
+  getKeywordsByMedia(id: string, mediaType:MediaType): Observable<Keyword[]>{
+
+    if( this._loading ){ 
+      return of();
+    }
+
+    const url = `${this.baseUrl}/${mediaType}/${id}/keywords`;
+    this._loading = true;
+
+    return this.http.get<KeywordsReponse>(url, {params: this.params })
+      .pipe( 
+        map( response => response.keywords),
+        tap( () => {
+          this._loading = false;
+        })
+      );
+
   }
   
 }

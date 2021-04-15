@@ -19,6 +19,7 @@ import { ListTvShow } from './pages/tv-shows/list/list.tv-show';
 import { RoutePipe } from '../../shared/pipes/route.pipe';
 import { CastSlideComponent } from './components/cast-slide/cast-slide.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { ProvidersComponent } from './components/providers/providers.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { DetailComponent } from './components/detail/detail.component';
     ListTvShow,
     CastSlideComponent,
     DetailComponent,
+    ProvidersComponent,
 
   ],
   imports: [
