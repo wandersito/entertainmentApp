@@ -37,7 +37,20 @@
             </div>
         </div>
 
+        <div class="row mt-2">
+            <div class="col" *ngFor="let keyword of keywords">
+                <span class="badge bg-primary"> {{ keyword }} </span>
+            </div>
+        </div>
+        
+
     </div>
+</div>
+
+<div class="row mt-2">
+            <div class="col">
+                <app-providers [provider]="provider"></app-providers>
+            </div>
 </div>
 
 <div class="row mt-5" *ngIf="cast.length > 0">
@@ -45,3 +58,5 @@
         <app-cast-slide [cast]="cast"></app-cast-slide>
     </div>
 </div>
+
+
