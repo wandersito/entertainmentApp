@@ -1,34 +1,39 @@
-<!-- 
-<div class="provider row"  *ngIf="provider.rent">
-    <h3 class="text-center bg-dark">
-        Rent  
-    </h3>
-    <div class="row justify-content-start">
-        <div class="col-lg-1 col-3 col-md-2 col-sm-3" *ngFor="let serviceMedia of provider.rent">
-            <img class="img-fluid" [src]="serviceMedia.logo_path | slideImage" [alt]="serviceMedia.provider_name">
+<div *ngIf="provider">
+    <div class="provider row"  *ngIf="provider.rent">
+        <h3 class="text-center bg-dark">
+            Rent  
+        </h3>
+        <div class="row justify-content-start">
+            <div class="col-lg-1 col-3 col-md-2 col-sm-3" *ngFor="let serviceMedia of provider.rent">
+                <img class="img-fluid" [src]="serviceMedia.logo_path | slideImage" [alt]="serviceMedia.provider_name">
+            </div>
         </div>
     </div>
 </div>
 
-<div class="provider row"  *ngIf="provider.buy">
-    <h3 class="text-center bg-dark">
-        Buy 
-    </h3>
-    <div class="row justify-content-start">
-        <div class="col-lg-1 col-3 col-md-2 col-sm-3" *ngFor="let serviceMedia of provider.buy">
-            <img class="img-fluid" [src]="serviceMedia.logo_path | slideImage" alt="">
+<div *ngIf="provider">
+    <div class="provider row"  *ngIf="provider.buy">
+        <h3 class="text-center bg-dark">
+            Buy 
+        </h3>
+        <div class="row justify-content-start">
+            <div class="col-lg-1 col-3 col-md-2 col-sm-3" *ngFor="let serviceMedia of provider.buy">
+                <img class="img-fluid" [src]="serviceMedia.logo_path | slideImage" alt="">
+            </div>
         </div>
     </div>
 </div>
 
-<div class="provider row"  *ngIf="provider.flatrate">
-    <h3 class="text-center bg-dark">
-        Flat Rate 
-    </h3> 
-
-    <div class="row justify-content-start">
-        <div class="col-lg-1 col-3 col-md-2 col-sm-3 " *ngFor="let serviceMedia of provider.flatrate">
-            <img class="img-fluid" [src]="serviceMedia.logo_path | slideImage" alt="">
+<div *ngIf="provider">
+    <div class="provider row"  *ngIf="provider.flatrate">
+        <h3 class="text-center bg-dark">
+            Subscription
+        </h3> 
+    
+        <div class="row justify-content-start">
+            <div class="col-lg-1 col-3 col-md-2 col-sm-3 " *ngFor="let serviceMedia of provider.flatrate">
+                <img class="img-fluid" [src]="serviceMedia.logo_path | slideImage" alt="">
+            </div>
         </div>
     </div>
-</div> -->
+</div>

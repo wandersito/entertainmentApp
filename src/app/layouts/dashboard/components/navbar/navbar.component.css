@@ -5,3 +5,89 @@ a{
 img{
     width: 100px;
 }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #navbar{
+      z-index: 3;
+  }
+  
+  #navbar ul {
+    list-style: none;
+  }
+  
+  #navbar ul li {
+    display: inline-block;
+    padding: 1rem;
+    position: relative;
+  }
+  
+  /* Hide nested ul by default */
+  #navbar ul li ul {
+    display: none;
+  }
+  
+  #navbar ul li:hover {
+    cursor: pointer;
+    background: #141414;
+  }
+  
+  #navbar ul li:hover a {
+    color: #333;
+  }
+  
+  /* Nested dropdown show */
+  #navbar ul li:hover ul {
+    display: block;
+    position: absolute;
+    left: 0;
+    z-index: 4;
+    width: 500px;
+    margin-top: 1rem;
+  }
+  
+  #navbar ul li:hover ul li {
+    display: block;
+    background: #141414;
+  }
+
+  #navbar ul li:hover ul li a{
+      color: white;
+  }
+  
+  #navbar ul li:hover ul li:hover {
+    background: #141414;
+  }
+
+  #navbar ul li:hover ul li:hover a{
+    color: #333;
+  }
+
+  @media(max-width: 600px) {
+    #navbar ul li {
+      display: block;
+    }
+  
+    #navbar ul li:hover ul {
+      width: 100%;
+      position: relative;
+    }
+  }
+
+  input{
+      margin: 1rem;
+      padding: 10px;
+      width: 70%;
+      height: 30px;
+  }
+
+  button{
+    margin: 1rem 0;
+    width: 30%;
+    height: 30px;
+    background-color: #a1a1a1;
+  }

@@ -1,6 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AllMediasService } from '../../../../../core/services/all-medias.service';
 import { Result, TimeWindow } from '../../../../../core/interfaces/trending-response.interface';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -40,14 +41,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.allMediasService.getTrending( TimeWindow.Week )
-        .subscribe( mediaItems => {
-          this.weekTrending = mediaItems;
-        });
-
-      this.allMediasService.getTrending( TimeWindow.Day )
-        .subscribe( mediaItems => {
-          this.dayTrending = mediaItems;
-          console.log( mediaItems)
+    .pipe( 
+      switchMap( week => {
+          this.weekTrending = week 
+          return this.allMediasService.getTrending( TimeWindow.Day );
+      })
+     )     
+        .subscribe( day => {
+          this.dayTrending = day;
         });
   }
 

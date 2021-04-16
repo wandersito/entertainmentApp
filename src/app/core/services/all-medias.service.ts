@@ -54,11 +54,20 @@ export class AllMediasService {
 
   getTrending( timeWindow: TimeWindow ):Observable<Result[]>{
 
+    if( this._loading ){ 
+      return of([]);
+    }
+    
+    this._loading = true;
     const url = `${this.baseUrl}/trending/all/${ timeWindow }`;
 
     return this.http.get<TrendingResponse>(url, {params: this.params })
       .pipe( 
-        map( results => results.results )
+        map( results => results.results ),
+        tap( () => {
+          this.page += 1;
+          this._loading = false;
+        })
       );
   }
 
@@ -126,12 +135,7 @@ export class AllMediasService {
 
   getProvidersByMedia(id: string, mediaType:MediaType): Observable<Provider>{
 
-    if( this._loading ){ 
-      return of();
-    }
-
     const url = `${this.baseUrl}/${mediaType}/${id}/watch/providers`;
-    this._loading = true;
 
     return this.http.get<ProvidersResponse>(url, {params: this.params })
       .pipe( 
@@ -139,32 +143,20 @@ export class AllMediasService {
           let provider: Provider;
           const providerKeyValue = Object.entries(response.results).find( provider => provider[0] === this.region )!;
           provider = providerKeyValue[1];
-          console.log( provider )
-          console.log( Object.entries(response.results).find( provider => provider[0] === this.region ))
           return provider;
-        }),
-        tap( () => {
-          this._loading = false;
         })
+
       );
 
   }
 
   getKeywordsByMedia(id: string, mediaType:MediaType): Observable<Keyword[]>{
 
-    if( this._loading ){ 
-      return of();
-    }
-
     const url = `${this.baseUrl}/${mediaType}/${id}/keywords`;
-    this._loading = true;
 
     return this.http.get<KeywordsReponse>(url, {params: this.params })
       .pipe( 
-        map( response => response.keywords),
-        tap( () => {
-          this._loading = false;
-        })
+        map( response => response.keywords)
       );
 
   }

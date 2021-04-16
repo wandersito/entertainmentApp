@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
       subMenu = this.createMenu( this.tvShowsGenres );
       this.insertIntoMenu( subMenu, 2,  {
         label: 'TV Shows',
-        url: './tv-shows'
+        url: 'tv-shows'
       });
 
     });

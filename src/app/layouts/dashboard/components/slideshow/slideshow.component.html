@@ -7,7 +7,10 @@
             class="swiper-slide"
             [ngStyle]="{
               'background-size': 'cover',
-              'background-image': 'url('+(mediaItem.backdrop_path | slideImage)+')'
+              'background-image': 'url('+(mediaItem.backdrop_path | slideImage)+')',
+              'background-position': 'center center',
+              'width': '100%',
+              'height': 'auto'
             }">
 
 

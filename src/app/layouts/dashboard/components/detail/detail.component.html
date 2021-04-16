@@ -37,9 +37,9 @@
             </div>
         </div>
 
-        <div class="row mt-2">
+        <div class="row mt-4 justify-content-center">
             <div class="col" *ngFor="let keyword of keywords">
-                <span class="badge bg-primary"> {{ keyword }} </span>
+                <span class="badge bg-primary"> {{ keyword.name }} </span>
             </div>
         </div>
         
@@ -48,9 +48,9 @@
 </div>
 
 <div class="row mt-2">
-            <div class="col">
-                <app-providers [provider]="provider"></app-providers>
-            </div>
+    <div class="col">
+        <app-providers [provider]="provider"></app-providers>
+    </div>
 </div>
 
 <div class="row mt-5" *ngIf="cast.length > 0">
