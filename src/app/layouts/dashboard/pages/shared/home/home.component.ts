@@ -40,15 +40,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.allMediasService.getTrending( TimeWindow.Week )
+    this.allMediasService.getTrending( TimeWindow.Day )
     .pipe( 
-      switchMap( week => {
-          this.weekTrending = week 
-          return this.allMediasService.getTrending( TimeWindow.Day );
+      switchMap( day => {
+          this.dayTrending = day 
+          return this.allMediasService.getTrending( TimeWindow.Week );
       })
-     )     
-        .subscribe( day => {
-          this.dayTrending = day;
+     ).subscribe( week => {
+          this.weekTrending = week;
         });
   }
 

@@ -11,15 +11,17 @@
                         {{ item.label }}
                     </a>
                     <ul *ngIf="item.url==='movies'">
-                        <li *ngFor="let genre of moviesGenres">
-                            <a [routerLink]="['/dashboard/tv-shows/genres',genre.id, genre.name]">
+                        <li *ngFor="let genre of moviesGenres"
+                        [routerLink]="['/dashboard/movies/genres',genre.id, genre.name]">
+                            <a>
                                 {{ genre.name }}
                             </a>
                         </li>
                     </ul>
                     <ul *ngIf="item.url==='tv-shows'">
-                        <li *ngFor="let genre of tvShowsGenres">
-                            <a [routerLink]="['/dashboard/tv-shows/genres',genre.id, genre.name]">
+                        <li [routerLink]="['/dashboard/tv-shows/genres',genre.id, genre.name]"
+                            *ngFor="let genre of tvShowsGenres">
+                            <a>
                                 {{ genre.name }}
                             </a>
                         </li>
@@ -29,10 +31,29 @@
         </nav>
       </div>
       <div class="col">
-        <form class="row">
-            <input class="col" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="col btn" type="submit">Search</button>
+        <form [formGroup]="myForm" class="row">
+            <input  class="col" 
+                    type="search" 
+                    placeholder="Search"
+                    formControlName="search"
+                    (input)="suggest()"
+                    (keyup.enter)="searchContent()"
+                    >
+
           </form>
+          <ul class="list-group">
+              <li  *ngFor="let media of suggestedMedia"
+                   class="list-search" 
+                   (click)="moveToDetail( media )"
+              >
+                  {{ media.name || media.title }}
+              </li>
+              <li *ngIf="suggestedMedia.length > 0"
+                  class="list-search" 
+                  (click)="searchContent()">
+                  Search: "{{ value }}"
+              </li>
+          </ul>
      
       </div>
   </div>

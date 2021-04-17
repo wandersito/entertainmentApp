@@ -20,6 +20,9 @@ import { RoutePipe } from '../../shared/pipes/route.pipe';
 import { CastSlideComponent } from './components/cast-slide/cast-slide.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ProvidersComponent } from './components/providers/providers.component';
+import { AboutComponent } from './pages/shared/about/about.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './pages/shared/search/search.component';
 
 
 @NgModule({
@@ -39,12 +42,14 @@ import { ProvidersComponent } from './components/providers/providers.component';
     CastSlideComponent,
     DetailComponent,
     ProvidersComponent,
-
+    AboutComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
     RatingModule,
     DashboardRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class DashboardModule { }

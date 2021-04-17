@@ -35,11 +35,8 @@ export class DetailComponent implements OnInit {
       this.allMediasService.getProvidersByMedia( this.id, this.mediaType ),
       this.allMediasService.getKeywordsByMedia( this.id, this.mediaType )
     ]).subscribe( ( [media, cast, provider, keywords] ) => {
-      if( !media ){
-        this.router.navigateByUrl('/home')
-        return;
-      }
-      this.media = media;
+
+      this.media = media!;
       this.cast = cast.filter( actor => actor.profile_path != null );
       this.provider = provider;
       this.keywords =  keywords;

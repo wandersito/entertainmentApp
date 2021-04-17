@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Cast, Credits } from '../interfaces/credits.interface';
@@ -142,6 +142,15 @@ export class AllMediasService {
         map( response => {
           let provider: Provider;
           const providerKeyValue = Object.entries(response.results).find( provider => provider[0] === this.region )!;
+          if( !providerKeyValue ) { 
+            provider = {
+              link:'',
+              buy:[],
+              rent:[],
+              flatrate:[]
+            }
+            return provider;
+          };
           provider = providerKeyValue[1];
           return provider;
         })
@@ -158,6 +167,34 @@ export class AllMediasService {
       .pipe( 
         map( response => response.keywords)
       );
+
+  }
+
+  getMediaBySearch( value: string ):Observable<Result[]>{
+
+    if( value.length === 0 ){
+      return of([]);
+    }
+
+    if( this._loading ){ 
+      return of([]);
+    }
+
+    this._loading = true;
+    
+    const url = `${this.baseUrl}/search/multi`;
+    const params = { query:value,...this.params }
+
+    return this.http.get<TrendingResponse>( url, { params: params } )
+    .pipe(
+      map( results => {
+        return results.results.filter( result => result.poster_path )
+      } ),
+      tap( () => {
+        this.page += 1;
+        this._loading = false;
+      })
+    );
 
   }
   

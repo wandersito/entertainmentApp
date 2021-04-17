@@ -1,5 +1,5 @@
 <div *ngIf="provider">
-    <div class="provider row"  *ngIf="provider.rent">
+    <div class="provider row"  *ngIf="provider.rent && provider.rent.length > 0">
         <h3 class="text-center bg-dark">
             Rent  
         </h3>
@@ -12,7 +12,7 @@
 </div>
 
 <div *ngIf="provider">
-    <div class="provider row"  *ngIf="provider.buy">
+    <div class="provider row"  *ngIf="provider.buy && provider.buy.length > 0">
         <h3 class="text-center bg-dark">
             Buy 
         </h3>
@@ -25,7 +25,7 @@
 </div>
 
 <div *ngIf="provider">
-    <div class="provider row"  *ngIf="provider.flatrate">
+    <div class="provider row"  *ngIf="provider.flatrate && provider.flatrate.length > 0">
         <h3 class="text-center bg-dark">
             Subscription
         </h3> 

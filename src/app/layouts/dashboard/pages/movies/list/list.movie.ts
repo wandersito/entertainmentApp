@@ -47,6 +47,7 @@ export class ListMovie implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.allMediasService.reset();
 
     const { genre, name } = this.activatedRoute.snapshot.params;
 
