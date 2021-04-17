@@ -5,8 +5,9 @@ import { Genre } from 'src/app/core/interfaces/genre.interface';
 import { MenuItem } from 'src/app/core/interfaces/menu.interface';
 import { AllMediasService } from '../../../../core/services/all-medias.service';
 import { Router } from '@angular/router';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime, switchMap, tap } from 'rxjs/operators';
 import { Result, MediaType } from '../../../../core/interfaces/trending-response.interface';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,7 @@ import { Result, MediaType } from '../../../../core/interfaces/trending-response
 export class NavbarComponent implements OnInit {
 
   value: string = '';
+  label: string = '';
 
   myForm: FormGroup = this.fb.group({
     search: ['']
@@ -47,11 +49,15 @@ export class NavbarComponent implements OnInit {
 
     this.debouncer
       .pipe(
+        tap( () => this.label = '' ),
         debounceTime( 300 ),
-        switchMap( value => this.allMediasServices.getMediaBySearch( value ) )
+        switchMap( value => this.allMediasServices.getMediaBySearch( value ) ),
       )
       .subscribe( mediaItems => {
         this.suggestedMedia = mediaItems.splice(0,5);
+        if( this.suggestedMedia.length === 0 ){
+          this.label = 'results not founds';
+        }
     })
 
     combineLatest( [
@@ -106,6 +112,7 @@ export class NavbarComponent implements OnInit {
     this.allMediasServices.reset();
     this.router.navigate(['/dashboard/search', this.value]);
     this.myForm.reset();
+    this.suggestedMedia = [];
   }
 
   suggest(){
@@ -116,7 +123,6 @@ export class NavbarComponent implements OnInit {
   }
 
   moveToDetail( media: Result ){
-    console.log(media.media_type, media.id);
     this.suggestedMedia = [];
     this.myForm.reset();
     this.router.navigate([`/dashboard/${media.media_type}`, media.id]);

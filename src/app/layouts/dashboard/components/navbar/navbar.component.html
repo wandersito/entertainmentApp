@@ -48,10 +48,10 @@
               >
                   {{ media.name || media.title }}
               </li>
-              <li *ngIf="suggestedMedia.length > 0"
+              <li *ngIf="value.length > 0"
                   class="list-search" 
                   (click)="searchContent()">
-                  Search: "{{ value }}"
+                  Search: "{{ value }}" {{ label }}
               </li>
           </ul>
      
