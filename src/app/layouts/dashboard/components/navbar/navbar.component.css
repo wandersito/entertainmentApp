@@ -89,6 +89,7 @@ img{
     padding: 5px;
     width: inherit;
     height: 30px;
+    max-width:30%;
   }
 
   .list-search{
@@ -98,4 +99,8 @@ img{
       display: block;
       border-radius: 2px;
       cursor: pointer;
+  }
+
+  form{
+    right: inherit;
   }
